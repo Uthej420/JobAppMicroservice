@@ -12,5 +12,12 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+  #EUREKA
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: true
+    fetchRegistry: true
 server:
   port: 8082

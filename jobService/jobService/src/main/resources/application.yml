@@ -1,6 +1,7 @@
 spring:
   application:
-    name :jobService
+    name: jobService
+  #POSTGRESQL
   datasource:
     url: jdbc:postgresql://localhost:5432/job
     username: uthej
@@ -11,5 +12,18 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+
+  #EURKEA
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: true
+    fetchRegistry: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
 server:
   port: 8081

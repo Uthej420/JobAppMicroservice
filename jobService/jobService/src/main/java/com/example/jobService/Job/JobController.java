@@ -1,5 +1,6 @@
 package com.example.jobService.Job;
 
+import com.example.jobService.Job.DTO.JobDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +13,12 @@ public class JobController {
     @Autowired JobService jobService;
 
     @GetMapping()
-    public ResponseEntity<List<Job>> getJobs(){
+    public ResponseEntity<List<JobDTO>> getJobs(){
         return ResponseEntity.ok(jobService.getJobs());
     }
     @GetMapping("/{jobId}")
-    public ResponseEntity<Job> getJobById(@PathVariable("jobId") int jobId,@RequestParam int companyId){
-        return ResponseEntity.ok(jobService.getJobById(jobId,companyId ));
+    public ResponseEntity<JobDTO> getJobById(@PathVariable("jobId") int jobId){
+        return ResponseEntity.ok(jobService.getJobById(jobId));
     }
     @PostMapping()
     public ResponseEntity<Job> addJob(@RequestBody Job job){

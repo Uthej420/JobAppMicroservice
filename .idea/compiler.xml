@@ -9,6 +9,7 @@
         <module name="jobService" />
         <module name="companyService" />
         <module name="reviewService" />
+        <module name="service-registry" />
       </profile>
     </annotationProcessing>
   </component>
@@ -17,6 +18,7 @@
       <module name="companyService" options="-parameters" />
       <module name="jobService" options="-parameters" />
       <module name="reviewService" options="-parameters" />
+      <module name="service-registry" options="-parameters" />
     </option>
   </component>
 </project>
