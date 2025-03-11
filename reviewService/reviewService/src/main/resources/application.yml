@@ -1,0 +1,16 @@
+spring:
+    application:
+        name: reviewService
+
+    datasource:
+        url: jdbc:postgresql://localhost:5432/review
+        username: uthej
+        password: 123456789
+    jpa:
+        database: POSTGRESQL
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        show-sql: true
+        hibernate:
+            ddl-auto: update
+server:
+    port: 8083

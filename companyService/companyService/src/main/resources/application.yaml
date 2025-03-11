@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: companyService
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/company
+    username: uthej
+    password: 123456789
+  jpa:
+    database: POSTGRESQL
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+server:
+  port: 8082
