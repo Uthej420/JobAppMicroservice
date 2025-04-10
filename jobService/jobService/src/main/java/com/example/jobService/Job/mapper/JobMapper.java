@@ -5,11 +5,14 @@ import com.example.jobService.Job.Job;
 import com.example.jobService.Job.external.Company;
 import com.example.jobService.Job.external.Review;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class JobMapper {
     public static JobDTO mapToJobCompanyDto(Job job, Company company, List<Review> reviews){
+
         JobDTO jobDTO = new JobDTO();
+
         jobDTO.setJobId(job.getJobId());
         jobDTO.setTitle(job.getTitle());
         jobDTO.setDescription(job.getDescription());

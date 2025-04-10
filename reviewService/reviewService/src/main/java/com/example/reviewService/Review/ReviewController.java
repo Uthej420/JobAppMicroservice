@@ -16,27 +16,27 @@ public class ReviewController {
     @Autowired
     private ReviewService reviewService;
 
-    @GetMapping()
+    @GetMapping
     public ResponseEntity<List<Review>> getReviews(@RequestParam int companyId){
         return ResponseEntity.ok(reviewService.getReviews(companyId));
     }
-
     @GetMapping("/{reviewId}")
-    public ResponseEntity<Review> getReviewById(@RequestParam int companyId,@PathVariable("reviewId") int reviewId){
-        return ResponseEntity.ok(reviewService.getReviewById(companyId, reviewId));
+    public  ResponseEntity<Review> getReviewById(@PathVariable("reviewId") int reviewId){
+        return ResponseEntity.ok(reviewService.getReviewById(reviewId));
     }
 
-    @PostMapping()
-    public ResponseEntity<Review> addReview(@RequestBody Review review){
-        return new ResponseEntity(reviewService.addReview(review),HttpStatus.CREATED);
+    @PostMapping
+    public ResponseEntity<Review> addReview(@RequestParam int companyId, @RequestBody Review review){
+        return new ResponseEntity(reviewService.addReview(companyId,review),HttpStatus.CREATED);
     }
     @PutMapping("/{reviewId}")
     public ResponseEntity<Review> updateReview(@PathVariable("reviewId")int reviewId,@RequestBody Review review){
         return new ResponseEntity<>(reviewService.updateReview(reviewId,review),HttpStatus.ACCEPTED);
     }
     @DeleteMapping("/{reviewId}")
-    public void deleteReview(@PathVariable("reviewId") int reviewId){
+    public ResponseEntity<String> deleteReview(@PathVariable("reviewId") int reviewId){
         reviewService.deleteReview(reviewId);
+        return new ResponseEntity<>("Review Deleted Successfully",HttpStatus.MOVED_PERMANENTLY);
 
     }
 

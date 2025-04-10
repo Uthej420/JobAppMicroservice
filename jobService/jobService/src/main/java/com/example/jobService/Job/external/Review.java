@@ -1,9 +1,12 @@
 package com.example.jobService.Job.external;
 
-public class Review {
+import java.util.List;
+
+public class Review  {
     private int reviewId;
     private String title;
     private String description;
+
 
     public int getReviewId() {
         return reviewId;

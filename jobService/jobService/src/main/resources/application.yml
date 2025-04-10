@@ -20,10 +20,12 @@ eureka:
       defaultZone: http://localhost:8761/eureka
     register-with-eureka: true
     fetchRegistry: true
+
+  #ZIPKIN
 management:
-  endpoints:
-    web:
-      exposure:
-        include: health
+  tracing:
+    sampling:
+      probability: 1.0
+
 server:
   port: 8081

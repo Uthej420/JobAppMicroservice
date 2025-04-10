@@ -6,8 +6,8 @@ public interface ReviewRepo {
 
     List<Review> getReviews(int companyId);
 
-    Review getReviewById(int companyId,int reviewId);
-    Review addReview( Review review);
+    Review getReviewById(int reviewId);
+    Review addReview(int companyId, Review review);
     Review updateReview(int reviewId, Review review);
     void deleteReview(int reviewId);
 }

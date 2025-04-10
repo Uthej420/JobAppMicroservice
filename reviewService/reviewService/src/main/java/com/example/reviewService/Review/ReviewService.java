@@ -1,9 +1,7 @@
 package com.example.reviewService.Review;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -14,17 +12,22 @@ public class ReviewService implements ReviewRepo{    @Autowired
 
     @Override
     public List<Review> getReviews(int companyId){
-        List<Review> reviews = reviewJpaRepo.findAll();
+
+        List<Review> reviews = reviewJpaRepo.findByCompanyId(companyId);
         //System.out.println(reviews);
         return  reviews;
     }
 
     @Override
-    public Review addReview(Review review) {
+    public Review addReview(int companyId, Review review) {
+        if(companyId != 0 && review != null){
+            review.setCompanyId(companyId);
+            reviewJpaRepo.save(review);
+        }
         return reviewJpaRepo.save(review);
     }
     @Override
-    public Review getReviewById(int companyId, int reviewId){
+    public Review getReviewById(int reviewId){
         return reviewJpaRepo.findById(reviewId).orElse(null);
     }
     @Override
@@ -48,14 +51,7 @@ public class ReviewService implements ReviewRepo{    @Autowired
 
     @Override
     public void deleteReview(int reviewId) {
-        try {
             reviewJpaRepo.deleteById(reviewId);
-            throw new ResponseStatusException(HttpStatus.MOVED_PERMANENTLY);
-        }catch (Exception e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
-
-
     }
 
 

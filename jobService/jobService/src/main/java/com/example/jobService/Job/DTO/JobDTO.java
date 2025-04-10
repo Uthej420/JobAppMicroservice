@@ -3,6 +3,7 @@ package com.example.jobService.Job.DTO;
 import com.example.jobService.Job.external.Company;
 import com.example.jobService.Job.external.Review;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class JobDTO {
@@ -13,6 +14,8 @@ public class JobDTO {
     private int max_sal;
     private Company company;
     private List<Review> reviews;
+
+    public JobDTO(){}
 
     public int getJobId() {
         return jobId;

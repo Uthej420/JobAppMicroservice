@@ -16,13 +16,14 @@ public class JobController {
     public ResponseEntity<List<JobDTO>> getJobs(){
         return ResponseEntity.ok(jobService.getJobs());
     }
+
     @GetMapping("/{jobId}")
     public ResponseEntity<JobDTO> getJobById(@PathVariable("jobId") int jobId){
         return ResponseEntity.ok(jobService.getJobById(jobId));
     }
     @PostMapping()
-    public ResponseEntity<Job> addJob(@RequestBody Job job){
-        return new ResponseEntity<>(jobService.addJob(job), HttpStatus.CREATED);
+    public ResponseEntity<JobDTO> addJob(@RequestParam int companyId,@RequestBody Job job){
+        return new ResponseEntity<>(jobService.addJob(companyId,job), HttpStatus.CREATED);
     }
     @PutMapping("/{jobId}")
     public ResponseEntity<Job> updateJob(@PathVariable("jobId") int jobId,@RequestBody Job job){

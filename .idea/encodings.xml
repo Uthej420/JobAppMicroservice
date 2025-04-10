@@ -2,6 +2,8 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/companyService/companyService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/configServer/configServer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/configServer/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/jobService/jobService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/reviewService/reviewService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service-registry/service-registry/src/main/java" charset="UTF-8" />
