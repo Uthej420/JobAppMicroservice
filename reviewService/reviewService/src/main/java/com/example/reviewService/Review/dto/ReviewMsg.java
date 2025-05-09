@@ -4,6 +4,7 @@ public class ReviewMsg {
     private int reviewId;
     private String title;
     private String description;
+    private double rating;
     private int companyId;
 
     public int getReviewId() {
@@ -28,6 +29,14 @@ public class ReviewMsg {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 
     public int getCompanyId() {

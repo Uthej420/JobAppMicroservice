@@ -19,6 +19,7 @@ public class ReviewMsgProducer {
         reviewMsg.setTitle(review.getTitle());
         reviewMsg.setDescription(review.getDescription());
         reviewMsg.setCompanyId(review.getCompanyId());
+        reviewMsg.setRating(review.getRating());
         rabbitTemplate.convertAndSend("companyRatingQueue", reviewMsg);
     }
 }

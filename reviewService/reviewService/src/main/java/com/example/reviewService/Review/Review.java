@@ -10,6 +10,7 @@ public class Review {
     private int reviewId;
     private String title;
     private String description;
+    private double rating;
     private int companyId;
     public Review(){}
 
@@ -43,5 +44,13 @@ public class Review {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 }

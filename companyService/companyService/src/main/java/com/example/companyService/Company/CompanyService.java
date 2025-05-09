@@ -1,6 +1,8 @@
 package com.example.companyService.Company;
 
+import com.example.companyService.Company.Clients.ReviewClient;
 import com.example.companyService.Company.dto.ReviewMsg;
+import jakarta.ws.rs.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,8 @@ public class CompanyService implements CompanyRepo{
 
     @Autowired
     private CompanyJpaRepo companyJpaRepo;
+    @Autowired
+    private ReviewClient reviewClient;
 
     @Override
     public List<Company> getCompanies() {
@@ -47,7 +51,11 @@ public class CompanyService implements CompanyRepo{
 
     @Override
     public void updateCompanyRating(ReviewMsg reviewMsg) {
-        System.out.println(reviewMsg.getDescription());
+        Company company = companyJpaRepo.findById(reviewMsg.getCompanyId()).
+                orElseThrow(() -> new NotFoundException("Company Not Found" + reviewMsg.getCompanyId()));
+        double averageRating = reviewClient.getAverageRatingForCompany(reviewMsg.getCompanyId());
+        company.setRating(averageRating);
+        companyJpaRepo.save(company);
     }
 
 }

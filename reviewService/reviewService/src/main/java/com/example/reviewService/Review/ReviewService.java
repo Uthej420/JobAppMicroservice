@@ -43,6 +43,9 @@ public class ReviewService implements ReviewRepo{    @Autowired
             if (newReview.getCompanyId() != 0) {
                 newReview.setCompanyId(review.getCompanyId());
             }
+            if(newReview.getRating()!=0){
+                newReview.setRating(review.getRating());
+            }
         }
 
         return reviewJpaRepo.save(newReview);
