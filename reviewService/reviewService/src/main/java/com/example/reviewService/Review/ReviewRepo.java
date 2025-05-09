@@ -1,4 +1,4 @@
-package com.example.companyService.Company.reviewService.Review;
+package com.example.reviewService.Review;
 
 import java.util.List;
 

@@ -1,0 +1,59 @@
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.cloud.gateway.route.RouteDefinitionLocator: INFO
+    org.springframework.cloud.loadbalancer: DEBUG
+    org.springframework.web.reactive.function.client.ExchangeFunctions: TRACE  # logs request/response bodies
+
+spring:
+  application:
+    name: apiGateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: jobService
+          uri: lb://jobService
+          predicates:
+            - Path=/jobs/**
+        - id: companyService
+          uri: lb://companyService
+          predicates:
+            - Path=/companies/**
+        - id: reviewService
+          uri: lb://reviewService
+          predicates:
+            - Path=/reviews/**
+        - id: serviceRegistry-root
+          uri: http://localhost:8761
+          predicates:
+            - Path=/eureka/main
+          filters:
+            - SetPath=/
+
+        - id: serviceRegistry-static
+          uri: http://localhost:8761
+          predicates:
+            - Path=/eureka/**
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+    loadbalancer:
+      ribbon:
+        enabled: false
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  port: 8084
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0

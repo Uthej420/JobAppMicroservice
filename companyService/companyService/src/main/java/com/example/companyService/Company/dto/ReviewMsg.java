@@ -1,25 +1,10 @@
-package com.example.reviewService.Review;
+package com.example.companyService.Company.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
-
-@Entity
-public class Review {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ReviewMsg {
     private int reviewId;
     private String title;
     private String description;
     private int companyId;
-    public Review(){}
-
-    public int getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(int companyId) {
-        this.companyId = companyId;
-    }
 
     public int getReviewId() {
         return reviewId;
@@ -43,5 +28,13 @@ public class Review {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(int companyId) {
+        this.companyId = companyId;
     }
 }

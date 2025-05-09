@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: companyService
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/company
+    username: uthej
+    password: 123456789
+  jpa:
+    database: POSTGRESQL
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  #EUREKA
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: true
+    fetchRegistry: true
+#ZIPKIN
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+server:
+  port: 8082

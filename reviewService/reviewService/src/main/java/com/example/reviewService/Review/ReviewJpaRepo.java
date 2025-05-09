@@ -1,4 +1,4 @@
-package com.example.companyService.Company.reviewService.Review;
+package com.example.reviewService.Review;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

@@ -1,6 +1,6 @@
-package com.example.companyService.Company.reviewService.Review;
+package com.example.reviewService.Review;
 
-import com.example.companyService.Company.reviewService.Review.messaging.ReviewMsgProducer;
+import com.example.reviewService.Review.messaging.ReviewMsgProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
