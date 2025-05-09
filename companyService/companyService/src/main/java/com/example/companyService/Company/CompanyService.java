@@ -1,5 +1,6 @@
 package com.example.companyService.Company;
 
+import com.example.companyService.Company.dto.ReviewMsg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +43,11 @@ public class CompanyService implements CompanyRepo{
     public List<Company> deleteCompany(int companyId) {
         companyJpaRepo.deleteById(companyId);
         return companyJpaRepo.findAll();
+    }
+
+    @Override
+    public void updateCompanyRating(ReviewMsg reviewMsg) {
+        System.out.println(reviewMsg.getDescription());
     }
 
 }

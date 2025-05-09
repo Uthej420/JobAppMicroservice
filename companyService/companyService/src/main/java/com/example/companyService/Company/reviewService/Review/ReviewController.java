@@ -1,5 +1,6 @@
-package com.example.reviewService.Review;
+package com.example.companyService.Company.reviewService.Review;
 
+import com.example.companyService.Company.reviewService.Review.messaging.ReviewMsgProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,8 @@ public class ReviewController {
 
     @Autowired
     private ReviewService reviewService;
+    @Autowired
+    private ReviewMsgProducer reviewMsgProducer;
 
     @GetMapping
     public ResponseEntity<List<Review>> getReviews(@RequestParam int companyId){
@@ -26,11 +29,19 @@ public class ReviewController {
     }
 
     @PostMapping
-    public ResponseEntity<Review> addReview(@RequestParam int companyId, @RequestBody Review review){
-        return new ResponseEntity(reviewService.addReview(companyId,review),HttpStatus.CREATED);
+    public ResponseEntity<String> addReview(@RequestParam int companyId, @RequestBody Review review){
+         boolean isReivewSaved = reviewService.addReview(companyId,review);
+                if(isReivewSaved){
+                    reviewMsgProducer.sendMsg(review);
+                    return new ResponseEntity("Review Added Successfully",HttpStatus.CREATED);
+                }else {
+                    return new ResponseEntity<>("Review Not Saved",HttpStatus.NOT_FOUND);
+                }
+
     }
     @PutMapping("/{reviewId}")
     public ResponseEntity<Review> updateReview(@PathVariable("reviewId")int reviewId,@RequestBody Review review){
+        reviewMsgProducer.sendMsg(review);
         return new ResponseEntity<>(reviewService.updateReview(reviewId,review),HttpStatus.ACCEPTED);
     }
     @DeleteMapping("/{reviewId}")

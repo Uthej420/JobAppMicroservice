@@ -7,6 +7,9 @@ import com.example.jobService.Job.DTO.JobDTO;
 import com.example.jobService.Job.external.Company;
 import com.example.jobService.Job.external.Review;
 import com.example.jobService.Job.mapper.JobMapper;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +27,16 @@ public class JobService implements JobRepo {
 
     @Autowired
     private JobJpaRepo jobJpaRepo;
+
+    int attempt = 0;
     @Override
+//    @CircuitBreaker(name = "companyBreaker", fallbackMethod="companyBreakerFallback")
+//    @Retry(name = "companyBreaker",
+//            fallbackMethod = "companyBreakerFallback")
+    @RateLimiter(name = "companyBreaker",
+          fallbackMethod = "companyBreakerFallback")
     public List<JobDTO> getJobs() {
+        System.out.println(attempt);
         List<Job> jobs =  jobJpaRepo.findAll();
         //List<JobDTO> jobDTOS = new ArrayList<>();
         //RestTemplate restTemplate = new RestTemplate();
@@ -33,7 +44,11 @@ public class JobService implements JobRepo {
                 .collect(Collectors.toList());
 
     }
-
+    public List<String> companyBreakerFallback(Exception e){
+        List<String> list = new ArrayList<>();
+        list.add("dummy");
+        return list;
+    }
     private JobDTO convertToDto(Job job){
 //        Using RestTemplate getting company object data
 //        Company company = restTemplate.getForObject(

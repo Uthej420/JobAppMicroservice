@@ -1,4 +1,4 @@
-package com.example.reviewService.Review;
+package com.example.companyService.Company.reviewService.Review;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

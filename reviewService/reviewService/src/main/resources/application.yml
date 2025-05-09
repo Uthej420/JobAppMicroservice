@@ -12,8 +12,16 @@ spring:
         show-sql: true
         hibernate:
             ddl-auto: update
+    #RABBITMQ
+    rabbitmq:
+        host: localhost
+        port: 5672
+        username: guest
+        password: guest
     #EUREKA
 eureka:
+    instance:
+        hostname: localhost
     client:
         serviceUrl:
             defaultZone: http://localhost:8761/eureka

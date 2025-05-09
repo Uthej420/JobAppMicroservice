@@ -1,6 +1,7 @@
 package com.example.jobService.Job;
 
 import com.example.jobService.Job.DTO.JobDTO;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,6 @@ import java.util.List;
 @RequestMapping("/jobs")
 public class JobController {
     @Autowired JobService jobService;
-
     @GetMapping()
     public ResponseEntity<List<JobDTO>> getJobs(){
         return ResponseEntity.ok(jobService.getJobs());

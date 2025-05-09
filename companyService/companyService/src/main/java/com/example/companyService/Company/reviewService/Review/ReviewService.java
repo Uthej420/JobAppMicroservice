@@ -1,4 +1,4 @@
-package com.example.reviewService.Review;
+package com.example.companyService.Company.reviewService.Review;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,12 +19,12 @@ public class ReviewService implements ReviewRepo{    @Autowired
     }
 
     @Override
-    public Review addReview(int companyId, Review review) {
+    public boolean addReview(int companyId, Review review) {
         if(companyId != 0 && review != null){
             review.setCompanyId(companyId);
             reviewJpaRepo.save(review);
         }
-        return reviewJpaRepo.save(review);
+        return true;
     }
     @Override
     public Review getReviewById(int reviewId){
